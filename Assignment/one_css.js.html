@@ -1,129 +1,120 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
 <head>
-    <title>My Resume</title>
+<title>My Resume</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+body {
+font-family: sans-serif;
+margin: 40px;
+text-align: center;
+background: linear-gradient(135deg, #667eea, #764ba2); /* updated background */
+color: #e6f7ff;
+transition: background 0.8s ease;
+}
 
-        .container {
-            width: 60%;
-            margin: 40px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+h1 {
+color: #66ccff;
+border-bottom: 2px solid #66ccff;
+}
 
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
+h3, p {
+color: #e6f7ff;
+}
 
-        h3 {
-            color: #34495e;
-            border-bottom: 2px solid #eaeaea;
-            padding-bottom: 5px;
-            margin-top: 20px;
-        }
+.list-container {
+display: flex;
+justify-content: center;
+}
 
-        p {
-            line-height: 1.6;
-            color: #555;
-        }
+ul {
+text-align: left;
+list-style-type: square;
+background-color: rgba(0, 0, 0, 0.6);
+padding: 15px 30px;
+border-radius: 10px;
+}
 
-        ul {
-            padding-left: 20px;
-        }
+a {
+color: white;
+background-color: #3399ff;
+padding: 8px 12px;
+border-radius: 5px;
+text-decoration: none;
+}
 
-        li {
-            margin-bottom: 6px;
-            color: #555;
-        }
-
-        button {
-            display: inline-block;
-            margin-top: 15px;
-            color: white;
-            background: #3498db;
-            padding: 8px 15px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #2980b9;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #7f8c8d;
-        }
-    </style>
+button {
+margin-top: 10px;
+padding: 8px 12px;
+border-radius: 5px;
+border: none;
+background-color: #66ccff;
+color: black;
+cursor: pointer;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<h1>Sanjana devadiga</h1>
 
-    <h1>sanjana devadiga</h1>
-    <p class="subtitle">Computer Science Engineering Student</p>
+<h3 id="designation">Computer Science Engineering Student</h3>
+<button onclick="changeDesignation()">Change Designation</button>
 
-    <h3>Profile</h3>
-    <ul>
-        <li>Interested in exploring new things</li>
-        <li>Languages known: C, Python</li>
-    </ul>
-
-    <h3>Education</h3>
-    <ul>
-        <li>BE in Computer Science Engineering (Pursuing)</li>
-        <li>Completed Computer Course</li>
-        <li>12th Grade</li>
-        <li>10th Grade</li>
-    </ul>
-
-    <h3>Career Objective</h3>
-    <p>
-        To secure a position in the field of Computer Science where I can
-        apply my knowledge, improve my skills, and contribute to organizational growth.
-    </p>
-
-    <h3>Strengths</h3>
-    <ul>
-        <li>Hardworking</li>
-        <li>Good communication skills</li>
-    </ul>
-
-    <h3>Hobbies</h3>
-    <ul>
-        <li>Learning new technologies</li>
-        <li>Listening to music</li>
-    </ul>
-
-    <!-- Button -->
-    <button onclick="openResume()">View My Resume</button>
-
+<div class="list-container">
+<ul>
+<li>Interested to explore new things.</li>
+<li>Languages known: C, Python.</li>
+</ul>
 </div>
 
-<script>
-function openResume() {
-    // Prompt box
-    let name = prompt("Enter your name:");
+<h3>Education</h3>
+<div class="list-container">
+<ul>
+<li>BE in Computer Science Engineering (Pursuing)</li>
+<li>Completed Computer Course</li>
+<li>12th Grade</li>
+<li>10th Grade</li>
+</ul>
+</div>
 
-    // If user enters something
-    if (name != null && name !== "") {
-        alert("Hello " + name + "! Opening your resume...");
-        window.open("https://sanjanadevadiga.github.io/4SEM-FET/", "_blank");
+<h3>Career Objective</h3>
+<p>
+To secure a position in the field of Computer Science where I can
+apply my knowledge, improve my skills, and contribute to organizational growth.
+</p>
+
+<h3>Strengths</h3>
+<div class="list-container">
+<ul>
+<li>Hardworking</li>
+<li>Good communication skills</li>
+</ul>
+</div>
+
+<h3>Hobbies</h3>
+<div class="list-container">
+<ul>
+<li>Learning new technologies</li>
+<li>Listening to music</li>
+</ul>
+</div>
+
+<p>
+<a href="https://sanjanadevadiga.github.io/4SEM-FET/">My Resume</a>
+</p>
+
+<script>
+function changeDesignation() {
+    debugger;
+    let newRole = prompt("Enter new designation:");
+
+    if (newRole) {
+        document.getElementById("designation").innerText = newRole;
+        alert("Designation changed to: " + newRole);
     } else {
-        alert("You didn't enter your name!");
+        alert("No designation entered!");
     }
 }
 </script>
