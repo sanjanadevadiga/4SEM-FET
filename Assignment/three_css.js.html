@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <fieldset>
+        <legend>Exp 9: Form & Loops</legend>
+        <input type="radio" name="r" value="A" checked> A 
+        <input type="radio" name="r" value="B"> B
+        <br>
+        <input type="checkbox" class="c" value="1"> 1
+        <input type="checkbox" class="c" value="2"> 2
+        <br>
+        <button onclick="run()">Process</button>
+    </fieldset>
+
+    <script>
+        function run() {
+            let res = "";
+            let rb = document.getElementsByName('r');
+            let cb = document.querySelectorAll('.c');
+
+            // For Loop for Radios
+            for(let i=0; i<rb.length; i++) if(rb[i].checked) res += "Radio: " + rb[i].value;
+            
+            // For Loop for Checkboxes
+            res += " | Check: ";
+            for(let i=0; i<cb.length; i++) if(cb[i].checked) res += cb[i].value + " ";
+
+            alert(res);
+        }
+    </script>
+</body>
+</html>
