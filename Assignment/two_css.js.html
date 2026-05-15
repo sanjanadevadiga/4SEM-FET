@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Experiment 8: Input Validation</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #eef; }
+        .container { background: white; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .error { color: red; font-weight: bold; }
+        .success { color: green; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Experiment 8: Data Validation</h2>
+        <p>We will validate that the input is a <b>Number</b> and is <b>Not Empty</b>.</p>
+        <button onclick="validateAge()">Verify Age</button>
+        <p id="statusMsg"></p>
+    </div>
+
+    <script>
+        function validateAge() {
+            let msgElement = document.getElementById('statusMsg');
+            
+            
+            let ageInput = prompt("Please enter your age (Numbers only):");
+
+            
+            if (ageInput === null) {
+                // User clicked "Cancel"
+                alert("Validation Cancelled.");
+                msgElement.innerHTML = "";
+            } 
+            else if (ageInput.trim() === "") {
+                
+                alert("Error: The field cannot be empty!");
+                msgElement.className = "error";
+                msgElement.innerText = "Invalid: Empty Input";
+            } 
+            else if (isNaN(ageInput)) {
+                
+                alert("Error: '" + ageInput + "' is not a valid number!");
+                msgElement.className = "error";
+                msgElement.innerText = "Invalid: Numeric characters required";
+            } 
+            else {
+                
+                alert("Validation Successful!");
+                msgElement.className = "success";
+                msgElement.innerText = "Success: Age recorded as " + ageInput;
+            }
+        }
+    </script>
+</body>
+</html>
