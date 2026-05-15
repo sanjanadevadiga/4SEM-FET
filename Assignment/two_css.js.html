@@ -1,56 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Experiment 8: Input Validation</title>
+    <title>Technical Skills List</title>
+
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 50px; background-color: #eef; }
-        .container { background: white; padding: 30px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .error { color: red; font-weight: bold; }
-        .success { color: green; font-weight: bold; }
+
+        body{
+            background:linear-gradient(to right,#ff512f,#dd2476);
+            font-family:Arial;
+            padding:20px;
+            color:white;
+            text-align:center;
+        }
+
+        input,select,button{
+            margin:5px;
+            padding:8px;
+            border:none;
+            border-radius:5px;
+        }
+
+        button{
+            background:#fff176;
+            color:black;
+            font-weight:bold;
+        }
+
+        ol{
+            width:60%;
+            margin:auto;
+            text-align:left;
+        }
+
+        ul{
+            background:rgba(255,255,255,0.15);
+            padding:10px;
+            border-radius:8px;
+        }
+
+        a{
+            text-decoration:none;
+            background:white;
+            color:#dd2476;
+            padding:10px 15px;
+            border-radius:8px;
+            font-weight:bold;
+        }
+
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h2>Experiment 8: Data Validation</h2>
-        <p>We will validate that the input is a <b>Number</b> and is <b>Not Empty</b>.</p>
-        <button onclick="validateAge()">Verify Age</button>
-        <p id="statusMsg"></p>
-    </div>
+<h1>Technical Skills</h1>
 
-    <script>
-        function validateAge() {
-            let msgElement = document.getElementById('statusMsg');
-            
-            
-            let ageInput = prompt("Please enter your age (Numbers only):");
+<input id="skillInput" placeholder="Enter Skill">
 
-            
-            if (ageInput === null) {
-                // User clicked "Cancel"
-                alert("Validation Cancelled.");
-                msgElement.innerHTML = "";
-            } 
-            else if (ageInput.trim() === "") {
-                
-                alert("Error: The field cannot be empty!");
-                msgElement.className = "error";
-                msgElement.innerText = "Invalid: Empty Input";
-            } 
-            else if (isNaN(ageInput)) {
-                
-                alert("Error: '" + ageInput + "' is not a valid number!");
-                msgElement.className = "error";
-                msgElement.innerText = "Invalid: Numeric characters required";
-            } 
-            else {
-                
-                alert("Validation Successful!");
-                msgElement.className = "success";
-                msgElement.innerText = "Success: Age recorded as " + ageInput;
-            }
-        }
-    </script>
+<select id="categorySelect">
+    <option value="prog">Programming Languages</option>
+    <option value="tools">Tools and Technologies</option>
+    <option value="core">Core Computer Science</option>
+</select>
+
+<button onclick="addSkill()">Add</button>
+
+<button onclick="removeSkill()">Remove</button>
+
+<ol>
+
+<li>
+Programming Languages
+<ul id="prog">
+<li>C</li>
+<li>Python</li>
+<li>Java</li>
+</ul>
+</li>
+
+<li>
+Tools and Technologies
+<ul id="tools">
+<li>VS Code</li>
+<li>Git</li>
+<li>Linux</li>
+</ul>
+</li>
+
+<li>
+Core Computer Science
+<ul id="core">
+<li>Programming</li>
+<li>Data Structures</li>
+<li>Algorithms</li>
+</ul>
+</li>
+
+</ol>
+
+<br>
+
+<p>
+
+<a href="https://sanjanadevadiga.github.io/4SEMFET/">
+My Resume
+</a>
+
+</p>
+
+<script src="script.js"></script>
+
 </body>
 </html>
