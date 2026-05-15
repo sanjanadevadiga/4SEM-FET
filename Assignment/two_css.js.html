@@ -24,6 +24,7 @@
             background:#fff176;
             color:black;
             font-weight:bold;
+            cursor:pointer;
         }
 
         ol{
@@ -107,7 +108,62 @@ My Resume
 
 </p>
 
-<script src="script.js"></script>
+<script>
+
+function getList(){
+
+return document.getElementById(categorySelect.value);
+
+}
+
+function addSkill(){
+
+let val = skillInput.value.trim();
+
+if(!val)
+return alert("Enter skill");
+
+let list = getList();
+
+for(let li of list.children){
+
+if(li.textContent.toLowerCase() === val.toLowerCase())
+
+return alert("Already exists");
+
+}
+
+list.innerHTML += `<li>${val}</li>`;
+
+skillInput.value = "";
+
+}
+
+function removeSkill(){
+
+let val = skillInput.value.trim().toLowerCase();
+
+let list = getList();
+
+for(let li of list.children){
+
+if(li.textContent.toLowerCase() === val){
+
+li.remove();
+
+skillInput.value = "";
+
+return;
+
+}
+
+}
+
+alert("Not Found");
+
+}
+
+</script>
 
 </body>
 </html>
