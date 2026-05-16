@@ -1,32 +1,107 @@
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html>
+<head>
+<title>Menu and List Box</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:linear-gradient(to right,#ff512f,#dd2476);
+text-align:center;
+margin-top:50px;
+color:white;
+}
+
+.box{
+background:rgba(255,255,255,0.15);
+width:320px;
+margin:auto;
+padding:20px;
+border-radius:12px;
+}
+
+select{
+width:220px;
+padding:8px;
+margin:10px;
+border:none;
+border-radius:5px;
+}
+
+h2{
+color:#fff176;
+}
+
+a{
+text-decoration:none;
+background:white;
+color:#dd2476;
+padding:10px 15px;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+margin-top:20px;
+}
+
+</style>
+</head>
+
 <body>
-    <fieldset>
-        <legend>Exp 10: Menus & Listeners</legend>
-        <select id="drop">
-            <option>Select Option</option>
-            <option value="X">Option X</option>
-            <option value="Y">Option Y</option>
-        </select>
-        <br><br>
-        <select id="list" multiple>
-            <option>Item 1</option>
-            <option>Item 2</option>
-        </select>
-    </fieldset>
 
-    <script>
-        const d = document.getElementById('drop');
-        const l = document.getElementById('list');
+<div class="box">
 
-        // Event Listener (Pull-down)
-        d.addEventListener('change', () => alert("Selected: " + d.value));
+<h2>Course Selection</h2>
 
-        // Event Handler (List Box)
-        l.onchange = () => {
-            let picks = Array.from(l.selectedOptions).map(o => o.value);
-            console.log("List Picks: ", picks);
-        };
-    </script>
+<select id="menu">
+
+<option>Select Course</option>
+<option>C</option>
+<option>Java</option>
+<option>Python</option>
+
+</select>
+
+<br>
+
+<select id="list" size="3">
+
+<option>HTML</option>
+<option>CSS</option>
+<option>JavaScript</option>
+
+</select>
+
+<h3 id="result"></h3>
+
+<a href="https://sanjanadevadiga.github.io/4SEMFET/">
+My Resume
+</a>
+
+</div>
+
+<script>
+
+let menu=document.getElementById("menu");
+
+let list=document.getElementById("list");
+
+menu.addEventListener("change",show);
+
+list.addEventListener("click",show);
+
+function show(){
+
+document.getElementById("result").innerHTML=
+
+"Menu: "+menu.value+
+
+"<br>List: "+list.value;
+
+}
+
+</script>
+
 </body>
 </html>
