@@ -1,75 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Exp 11: Z-Index Stacking Lab</title>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
 
-        .container {
-            position: relative; /* Context for children's absolute positioning */
-            width: 300px;
-            height: 300px;
-        }
+<meta charset="UTF-8">
 
-        .card {
-            width: 150px;
-            height: 200px;
-            position: absolute; /* REQUIRED: z-index only works on positioned elements */
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-            border: 2px solid white;
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .card:hover {
-            transform: scale(1.05);
-        }
+<title>Z-Index Stacking Lab</title>
 
-        /* Initial positions and colors */
-        #redCard   { background: #ff4d4d; top: 0; left: 0; z-index: 1; }
-        #blueCard  { background: #4d94ff; top: 40px; left: 40px; z-index: 2; }
-        #greenCard { background: #4caf50; top: 80px; left: 80px; z-index: 3; }
-    </style>
+<style>
+
+body{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+background:linear-gradient(to right,#ff512f,#dd2476);
+font-family:Arial,sans-serif;
+color:white;
+}
+
+.info{
+text-align:center;
+margin-bottom:40px;
+}
+
+.container{
+position:relative;
+width:350px;
+height:350px;
+}
+
+.card{
+width:200px;
+height:250px;
+position:absolute;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+font-size:25px;
+font-weight:bold;
+border-radius:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.red{
+background:#ff4b5c;
+top:0;
+left:0;
+}
+
+.blue{
+background:#3498db;
+top:40px;
+left:40px;
+}
+
+.green{
+background:#2ecc71;
+top:80px;
+left:80px;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+a{
+text-decoration:none;
+background:white;
+color:#dd2476;
+padding:10px 15px;
+border-radius:8px;
+font-weight:bold;
+margin-top:20px;
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <div class="container">
-        <div id="redCard" class="card" onclick="stackMe(this)">Layer 1</div>
-        <div id="blueCard" class="card" onclick="stackMe(this)">Layer 2</div>
-        <div id="greenCard" class="card" onclick="stackMe(this)">Layer 3</div>
-    </div>
+<div class="info">
 
-    <script>
-        // Track the highest Z-index value globally
-        let topLayer = 10;
+<h1 style="color:#fff176;">
+Dynamic Z-Index Stacking
+</h1>
 
-        function stackMe(element) {
-            // 1. Increment the counter
-            topLayer++;
+<p>
+Click any card to bring it to the front.
+</p>
 
-            // 2. Manipulate the CSS z-index property via JavaScript
-            element.style.zIndex = topLayer;
+</div>
 
-            // Optional: Logging to see the values change in real-time
-            console.log("Element " + element.id + " is now at Z-Index: " + topLayer);
-        }
-    </script>
+<div class="container">
+
+<div id="card1" class="card red"
+onclick="bringToFront('card1')">
+Card 1
+</div>
+
+<div id="card2" class="card blue"
+onclick="bringToFront('card2')">
+Card 2
+</div>
+
+<div id="card3" class="card green"
+onclick="bringToFront('card3')">
+Card 3
+</div>
+
+</div>
+
+<br><br>
+
+<a href="https://sanjanadevadiga.github.io/4SEMFET/">
+My Resume
+</a>
+
+<script>
+
+let highestZ=1;
+
+function bringToFront(elementId){
+
+highestZ++;
+
+const element=document.getElementById(elementId);
+
+element.style.zIndex=highestZ;
+
+}
+
+</script>
 
 </body>
 </html>
