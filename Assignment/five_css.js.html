@@ -1,9 +1,11 @@
+# Enhanced Z-Index Stacking Lab
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Z-Index Stacking Lab</title>
@@ -11,115 +13,186 @@
 <style>
 
 body{
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(to right,#1e3c72,#2a5298);
+color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-height:100vh;
-margin:0;
-background:linear-gradient(to right,#ff512f,#dd2476);
-font-family:Arial,sans-serif;
-color:white;
+min-height:100vh;
 }
 
-.info{
+.heading{
 text-align:center;
-margin-bottom:40px;
+margin-bottom:30px;
+}
+
+.heading h1{
+color:#ffd700;
+font-size:38px;
+margin-bottom:10px;
+}
+
+.heading p{
+font-size:18px;
 }
 
 .container{
 position:relative;
-width:350px;
-height:350px;
+width:600px;
+height:450px;
+background:rgba(255,255,255,0.1);
+border-radius:20px;
+padding:20px;
+box-shadow:0 0 15px rgba(0,0,0,0.4);
+overflow:hidden;
 }
 
 .card{
-width:200px;
-height:250px;
+width:220px;
+height:140px;
 position:absolute;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-color:white;
-font-size:25px;
+font-size:22px;
 font-weight:bold;
+color:white;
 border-radius:15px;
 cursor:pointer;
-transition:0.3s;
+transition:0.4s;
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+transform:scale(1.08);
 }
 
 .red{
 background:#ff4b5c;
-top:0;
-left:0;
+top:20px;
+left:20px;
 }
 
 .blue{
 background:#3498db;
-top:40px;
-left:40px;
+top:70px;
+left:120px;
 }
 
 .green{
 background:#2ecc71;
-top:80px;
-left:80px;
+top:140px;
+left:220px;
 }
 
-.card:hover{
-transform:scale(1.05);
+.purple{
+background:#9b59b6;
+top:210px;
+left:90px;
+}
+
+.orange{
+background:#f39c12;
+top:260px;
+left:300px;
+}
+
+.infoBox{
+margin-top:25px;
+padding:15px;
+width:500px;
+background:rgba(255,255,255,0.15);
+border-radius:12px;
+text-align:center;
+font-size:18px;
+}
+
+button{
+margin-top:20px;
+padding:12px 20px;
+border:none;
+border-radius:8px;
+background:#ffd700;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:white;
 }
 
 a{
 text-decoration:none;
 background:white;
-color:#dd2476;
-padding:10px 15px;
+color:#1e3c72;
+padding:12px 18px;
 border-radius:8px;
 font-weight:bold;
-margin-top:20px;
+margin-top:25px;
+display:inline-block;
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="info">
+<div class="heading">
 
-<h1 style="color:#fff176;">
-Dynamic Z-Index Stacking
-</h1>
+<h1>Manipulating CSS with JavaScript using Z-Index</h1>
 
 <p>
-Click any card to bring it to the front.
+Click any card to bring it to the front using JavaScript.
 </p>
 
 </div>
 
 <div class="container">
 
-<div id="card1" class="card red"
-onclick="bringToFront('card1')">
+<div id="card1" class="card red" onclick="bringToFront('card1')">
 Card 1
+<small>HTML</small>
 </div>
 
-<div id="card2" class="card blue"
-onclick="bringToFront('card2')">
+<div id="card2" class="card blue" onclick="bringToFront('card2')">
 Card 2
+<small>CSS</small>
 </div>
 
-<div id="card3" class="card green"
-onclick="bringToFront('card3')">
+<div id="card3" class="card green" onclick="bringToFront('card3')">
 Card 3
+<small>JavaScript</small>
+</div>
+
+<div id="card4" class="card purple" onclick="bringToFront('card4')">
+Card 4
+<small>React</small>
+</div>
+
+<div id="card5" class="card orange" onclick="bringToFront('card5')">
+Card 5
+<small>Python</small>
 </div>
 
 </div>
 
-<br><br>
+<div class="infoBox" id="message">
+Click any card to change its z-index and move it to the front.
+</div>
 
-<a href="https://sanjanadevadiga.github.io/4SEM-FET/">
+<button onclick="resetCards()">
+Reset Stacking
+</button>
+
+<br>
+
+<a href="https://
 My Resume
 </a>
 
@@ -135,9 +208,36 @@ const element=document.getElementById(elementId);
 
 element.style.zIndex=highestZ;
 
+document.getElementById("message").innerHTML=
+"<b>"+element.innerText+"</b> is now on top with z-index: "+highestZ;
+
+}
+
+function resetCards(){
+
+highestZ=1;
+
+const cards=document.querySelectorAll('.card');
+
+let z=1;
+
+cards.forEach(function(card){
+
+card.style.zIndex=z;
+
+z++;
+
+});
+
+document.getElementById("message").innerHTML=
+"All cards have been reset to default stacking order.";
+
 }
 
 </script>
 
 </body>
 </html>
+```
+
+five
