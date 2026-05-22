@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+
+<title>Alert and Prompt Demo</title>
+
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+background:linear-gradient(to right,#1e3c72,#2a5298);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.box{
+width:400px;
+background:rgba(255,255,255,0.15);
+padding:30px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 8px 20px rgba(0,0,0,0.4);
+}
+
+h1{
+color:#ffd700;
+margin-bottom:10px;
+}
+
+p{
+margin-bottom:20px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:12px;
+border:none;
+border-radius:8px;
+background:#ffd700;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:white;
+transform:scale(1.03);
+}
+
+#out{
+margin-top:20px;
+background:white;
+color:black;
+padding:15px;
+border-radius:10px;
+display:none;
+line-height:1.7;
+text-align:left;
+}
+
+.info{
+margin-top:20px;
+background:rgba(255,255,255,0.12);
+padding:15px;
+border-radius:10px;
+text-align:left;
+}
+
+a{
+text-decoration:none;
+background:white;
+color:#1e3c72;
+padding:10px 15px;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Alert and Prompt Demo</h1>
+
+<p>
+Demonstrating Alert and Prompt Functions
+</p>
+
+<button onclick="showData()">
+Click Here
+</button>
+
+<div id="out"></div>
+
+<div class="info">
+
+<b>Functions Used:</b>
+
+<ul>
+<li>alert()</li>
+<li>prompt()</li>
+<li>if condition</li>
+<li>DOM Manipulation</li>
+</ul>
+
+</div>
+
+<br>
+
+<a href="https://reefareema07-blip.github.io/sem4-fet/" target="_blank">
+My Resume
+</a>
+
+</div>
+
+<script>
+
+function showData(){
+
+let name=prompt("Enter Your Name");
+
+if(name=="" || name==null){
+
+alert("Name cannot be empty!");
+
+return;
+
+}
+
+let age=prompt("Enter Your Age");
+
+if(age=="" || age==null){
+
+alert("Age cannot be empty!");
+
+return;
+
+}
+
+alert("Registration Successful!");
+
+document.getElementById("out").style.display="block";
+
+document.getElementById("out").innerHTML=
+
+"<h3>User Details</h3>"+
+
+"<b>Name:</b> "+name+
+
+"<br><b>Age:</b> "+age;
+
+}
+
+</script>
+
+</body>
+</html>   three html
