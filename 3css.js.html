@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Short Form</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(to right,#ff512f,#dd2476);
+display:flex;
+justify-content:center;
+padding:20px;
+color:white;
+}
+
+.box{
+background:rgba(255,255,255,0.15);
+padding:20px;
+width:350px;
+border-radius:12px;
+}
+
+.section{
+margin-bottom:15px;
+padding:10px;
+background:rgba(255,255,255,0.1);
+border-radius:8px;
+}
+
+.title{
+font-weight:bold;
+color:#fff176;
+display:block;
+margin-bottom:5px;
+}
+
+input[type="text"],
+input[type="number"]{
+width:100%;
+padding:6px;
+margin:5px 0;
+box-sizing:border-box;
+border:none;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#fff176;
+color:black;
+border:none;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+}
+
+#error{
+color:#ffb3b3;
+font-size:14px;
+margin-bottom:10px;
+}
+
+#out{
+margin-top:15px;
+padding:10px;
+background:white;
+color:black;
+border-radius:5px;
+display:none;
+}
+
+a{
+text-decoration:none;
+background:white;
+color:#dd2476;
+padding:10px 15px;
+border-radius:8px;
+font-weight:bold;
+display:inline-block;
+margin-top:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Registration</h2>
+
+<div id="error"></div>
+
+<form id="f">
+
+<div class="section">
+
+<span class="title">Info</span>
+
+<input type="text" name="name" placeholder="Name" required>
+
+<input type="number" name="age" placeholder="Age" required>
+
+</div>
+
+<div class="section">
+
+<span class="title">Gender</span>
+
+<label><input type="radio" name="gen" value="Male"> Male</label>
+
+<label><input type="radio" name="gen" value="Female"> Female</label>
+
+</div>
+
+<div class="section">
+
+<span class="title">Hobbies</span>
+
+<label><input type="checkbox" name="h" value="Reading"> Reading</label>
+
+<label><input type="checkbox" name="h" value="Sports"> Sports</label>
+
+</div>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div id="out"></div>
+
+<br>
+
+<a href="https://sanjanadevadiga.github.io/4SEM-FET/">
+My Resume
+</a>
+
+</div>
+
+<script>
+
+document.getElementById("f").onsubmit=function(e){
+
+e.preventDefault();
+
+const d=new FormData(e.target),
+err=document.getElementById("error"),
+out=document.getElementById("out");
+
+const name=d.get('name'),
+hobbies=d.getAll('h');
+
+if(/[0-9]/.test(name))
+return err.textContent="No numbers in name!";
+
+if(!d.get('gen'))
+return err.textContent="Select Gender!";
+
+if(hobbies.length===0)
+return err.textContent="Select a hobby!";
+
+err.textContent="";
+
+out.style.display="block";
+
+out.innerHTML=
+`<b>Success!</b><br>
+Name: ${name}<br>
+Age: ${d.get('age')}<br>
+Gender: ${d.get('gen')}<br>
+Hobbies: ${hobbies.join(', ')}`;
+
+};
+
+</script>
+
+</body>
+</html>
