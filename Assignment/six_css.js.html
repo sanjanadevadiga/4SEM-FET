@@ -1,165 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Advanced Dynamic Z-Index Stacking System</title>
+<title>Dynamic Z-Index System</title>
 
 <style>
-
 body{
 margin:0;
-padding:0;
-font-family:Arial,sans-serif;
+font-family:Arial;
 background:linear-gradient(to right,#1e3c72,#2a5298);
 color:white;
-overflow-x:hidden;
 }
 
-header{
-text-align:center;
-padding:25px;
-}
+header,footer{text-align:center;padding:20px;}
 
-header h1{
-color:#ffd700;
-font-size:42px;
-margin-bottom:10px;
-}
-
-header p{
-font-size:18px;
-}
+h1{color:#ffd700;}
 
 .main{
 display:flex;
 justify-content:center;
-align-items:flex-start;
-gap:30px;
-padding:20px;
+gap:20px;
 flex-wrap:wrap;
+padding:20px;
 }
 
 .container{
 position:relative;
-width:750px;
-height:550px;
+width:700px;
+height:500px;
 background:rgba(255,255,255,0.1);
-border-radius:20px;
-border:2px solid rgba(255,255,255,0.3);
+border-radius:15px;
 overflow:hidden;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
 }
 
 .card{
-width:180px;
-height:240px;
 position:absolute;
-border-radius:15px;
+width:170px;
+height:220px;
+border-radius:12px;
 border:2px solid white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-font-size:24px;
+font-size:22px;
 font-weight:bold;
 cursor:pointer;
 transition:0.3s;
 box-shadow:0 6px 15px rgba(0,0,0,0.4);
-user-select:none;
 }
 
 .card:hover{
-transform:scale(1.08);
+transform:scale(1.05);
 }
 
 .card small{
+font-size:14px;
 margin-top:10px;
-font-size:15px;
-font-weight:normal;
 }
 
 .panel{
-width:320px;
-background:rgba(255,255,255,0.12);
+width:280px;
+background:rgba(255,255,255,0.1);
 padding:20px;
-border-radius:20px;
-box-shadow:0 8px 20px rgba(0,0,0,0.4);
+border-radius:15px;
 }
 
-.panel h2{
-color:#ffd700;
-text-align:center;
-margin-bottom:20px;
-}
-
-.panel button{
+button{
 width:100%;
-padding:12px;
-margin:10px 0;
+padding:10px;
+margin:8px 0;
 border:none;
-border-radius:10px;
+border-radius:8px;
 background:#ffd700;
 font-weight:bold;
-font-size:16px;
 cursor:pointer;
-transition:0.3s;
 }
 
-.panel button:hover{
+button:hover{
 background:white;
-transform:scale(1.03);
 }
 
 #status{
-margin-top:20px;
+margin-top:15px;
+padding:10px;
 background:rgba(255,255,255,0.15);
-padding:15px;
-border-radius:10px;
-font-size:16px;
-min-height:70px;
-}
-
-.infoBox{
-margin-top:20px;
-background:rgba(255,255,255,0.15);
-padding:15px;
-border-radius:10px;
-line-height:1.6;
-}
-
-footer{
-text-align:center;
-padding:25px;
+border-radius:8px;
+min-height:60px;
 }
 
 a{
 text-decoration:none;
 background:white;
 color:#1e3c72;
-padding:12px 18px;
+padding:10px 15px;
 border-radius:8px;
 font-weight:bold;
-display:inline-block;
-margin-top:20px;
 }
-
 </style>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Dynamic Z-Index Stacking System</h1>
-
-<p>
-Manipulating CSS with JavaScript using z-index, event handling, DOM manipulation and dynamic styling.
-</p>
-
+<h1>Dynamic Z-Index Stacking</h1>
+<p>Interactive cards using CSS and JavaScript</p>
 </header>
 
 <div class="main">
@@ -167,350 +113,142 @@ Manipulating CSS with JavaScript using z-index, event handling, DOM manipulation
 <div id="app" class="container"></div>
 
 <div class="panel">
+<h2>Controls</h2>
 
-<h2>Control Panel</h2>
+<button id="resetBtn">Reset</button>
+<button id="shuffleBtn">Shuffle</button>
+<button id="colorBtn">Random Colors</button>
+<button id="rotateBtn">Rotate</button>
+<button id="addBtn">Add Card</button>
+<button id="removeBtn">Remove Card</button>
 
-<button id="resetBtn">
-Reset Stack
-</button>
-
-<button id="shuffleBtn">
-Shuffle Cards
-</button>
-
-<button id="randomBtn">
-Random Colors
-</button>
-
-<button id="rotateBtn">
-Rotate Cards
-</button>
-
-<button id="shadowBtn">
-Toggle Shadow
-</button>
-
-<button id="addBtn">
-Add New Card
-</button>
-
-<button id="removeBtn">
-Remove Last Card
-</button>
-
-<div id="status">
-
-System Ready...
+<div id="status">System Ready...</div>
 
 </div>
-
-<div class="infoBox">
-
-<b>Features Included:</b>
-
-<ul>
-<li>Dynamic z-index stacking</li>
-<li>CSS manipulation using JavaScript</li>
-<li>DOM element creation</li>
-<li>Event listeners</li>
-<li>Hover effects</li>
-<li>Card animations</li>
-<li>Random positioning</li>
-<li>Interactive controls</li>
-</ul>
-
-</div>
-
-</div>
-
 </div>
 
 <footer>
-
-<a href="https://
-My Resume
-</a>
-
+<a href="#">My Resume</a>
 </footer>
 
 <script>
-
 const app=document.getElementById("app");
-
 const statusBox=document.getElementById("status");
 
-const resetBtn=document.getElementById("resetBtn");
-
-const shuffleBtn=document.getElementById("shuffleBtn");
-
-const randomBtn=document.getElementById("randomBtn");
-
-const rotateBtn=document.getElementById("rotateBtn");
-
-const shadowBtn=document.getElementById("shadowBtn");
-
-const addBtn=document.getElementById("addBtn");
-
-const removeBtn=document.getElementById("removeBtn");
-
-let highestZ=100;
-
-let shadowEnabled=true;
-
-let cardCount=0;
-
 const colors=[
-"#ff4b5c",
-"#3498db",
-"#2ecc71",
-"#9b59b6",
-"#f39c12",
-"#1abc9c",
-"#e74c3c",
-"#34495e",
-"#16a085",
-"#8e44ad"
+"#ff4b5c","#3498db","#2ecc71",
+"#9b59b6","#f39c12","#1abc9c"
 ];
 
-const technologies=[
-"HTML",
-"CSS",
-"JavaScript",
-"React",
-"Python",
-"Java",
-"NodeJS",
-"MongoDB",
-"Git",
-"Linux"
+const tech=[
+"HTML","CSS","JavaScript",
+"React","Python","Java"
 ];
 
 let cards=[];
+let highestZ=100;
 
-function createCard(index){
+function createCard(i){
 
-const card=document.createElement("div");
+let card=document.createElement("div");
 
 card.className="card";
-
-card.style.background=colors[index%colors.length];
-
-card.style.left=(40+(index*45))+"px";
-
-card.style.top=(30+(index*30))+"px";
-
-card.style.zIndex=index;
+card.style.background=colors[i%colors.length];
+card.style.left=(30+i*40)+"px";
+card.style.top=(20+i*30)+"px";
+card.style.zIndex=i;
 
 card.innerHTML=
-"Card "+(index+1)+
-"<small>"+technologies[index%technologies.length]+"</small>";
+"Card "+(i+1)+
+"<small>"+tech[i%tech.length]+"</small>";
 
 card.onclick=function(){
-
 highestZ++;
-
 card.style.zIndex=highestZ;
 
 statusBox.innerHTML=
-"<b>"+card.innerText+
-"</b> moved to front.<br>Z-Index: "+
-highestZ;
-
+card.innerText+" moved to front";
 };
 
-card.addEventListener("dblclick",function(){
+card.ondblclick=function(){
+card.style.transform="rotate(10deg) scale(1.1)";
 
-card.style.transform="scale(1.15) rotate(8deg)";
-
-setTimeout(function(){
-
+setTimeout(()=>{
 card.style.transform="scale(1)";
-
-},500);
-
-statusBox.innerHTML=
-card.innerText+
-" animated on double click.";
-
-});
+},400);
+};
 
 app.appendChild(card);
-
 cards.push(card);
-
-cardCount++;
-
 }
 
-let i=0;
+for(let i=0;i<6;i++) createCard(i);
 
-while(i<6){
+document.getElementById("shuffleBtn").onclick=function(){
 
-createCard(i);
-
-i++;
-
-}
-
-resetBtn.addEventListener("click",function(){
-
-let j=0;
-
-while(j<cards.length){
-
-cards[j].style.zIndex=j+1;
-
-cards[j].style.transform="rotate(0deg)";
-
-j++;
-
-}
-
-highestZ=100;
-
-statusBox.innerHTML=
-"All cards reset successfully.";
-
-alert("Stack reset completed!");
-
+cards.forEach(card=>{
+card.style.left=Math.random()*500+"px";
+card.style.top=Math.random()*250+"px";
 });
 
-shuffleBtn.addEventListener("click",function(){
+statusBox.innerHTML="Cards Shuffled";
+};
 
-let k=0;
+document.getElementById("colorBtn").onclick=function(){
 
-while(k<cards.length){
-
-cards[k].style.left=
-Math.floor(Math.random()*520)+"px";
-
-cards[k].style.top=
-Math.floor(Math.random()*280)+"px";
-
-k++;
-
-}
-
-statusBox.innerHTML=
-"Cards shuffled randomly.";
-
-});
-
-randomBtn.addEventListener("click",function(){
-
-let m=0;
-
-while(m<cards.length){
-
-cards[m].style.background=
+cards.forEach(card=>{
+card.style.background=
 colors[Math.floor(Math.random()*colors.length)];
-
-m++;
-
-}
-
-statusBox.innerHTML=
-"Random colors applied.";
-
 });
 
-rotateBtn.addEventListener("click",function(){
+statusBox.innerHTML="Colors Changed";
+};
 
-let n=0;
+document.getElementById("rotateBtn").onclick=function(){
 
-while(n<cards.length){
-
-cards[n].style.transform=
-"rotate("+
-(Math.floor(Math.random()*40)-20)+
-"deg)";
-
-n++;
-
-}
-
-statusBox.innerHTML=
-"Cards rotated randomly.";
-
+cards.forEach(card=>{
+card.style.transform=
+"rotate("+(Math.random()*40-20)+"deg)";
 });
 
-shadowBtn.addEventListener("click",function(){
+statusBox.innerHTML="Cards Rotated";
+};
 
-shadowEnabled=!shadowEnabled;
+document.getElementById("resetBtn").onclick=function(){
 
-let p=0;
-
-while(p<cards.length){
-
-cards[p].style.boxShadow=
-shadowEnabled
-? "0 6px 15px rgba(0,0,0,0.4)"
-: "none";
-
-p++;
-
-}
-
-statusBox.innerHTML=
-shadowEnabled
-? "Shadow enabled."
-: "Shadow disabled.";
-
+cards.forEach((card,i)=>{
+card.style.left=(30+i*40)+"px";
+card.style.top=(20+i*30)+"px";
+card.style.transform="rotate(0deg)";
+card.style.zIndex=i;
 });
 
-addBtn.addEventListener("click",function(){
+statusBox.innerHTML="System Reset";
+};
 
-createCard(cardCount);
+document.getElementById("addBtn").onclick=function(){
 
-statusBox.innerHTML=
-"New card added successfully.";
+createCard(cards.length);
+statusBox.innerHTML="New Card Added";
+};
 
-});
+document.getElementById("removeBtn").onclick=function(){
 
-removeBtn.addEventListener("click",function(){
+if(cards.length==0) return;
 
-if(cards.length===0){
+cards.pop().remove();
 
-alert("No cards left!");
+statusBox.innerHTML="Last Card Removed";
+};
 
-return;
+document.addEventListener("keydown",e=>{
 
-}
-
-const lastCard=cards.pop();
-
-lastCard.remove();
-
-cardCount--;
-
-statusBox.innerHTML=
-"Last card removed.";
+if(e.key=="r") shuffleBtn.click();
+if(e.key=="c") colorBtn.click();
+if(e.key=="z") resetBtn.click();
 
 });
-
-document.addEventListener("keydown",function(e){
-
-if(e.key==="r"){
-
-shuffleBtn.click();
-
-}
-
-if(e.key==="c"){
-
-randomBtn.click();
-
-}
-
-if(e.key==="z"){
-
-resetBtn.click();
-
-}
-
-});
-
 </script>
 
 </body>
-</html>   
+</html>
