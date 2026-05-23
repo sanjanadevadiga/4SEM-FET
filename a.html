@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alert and Prompt</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+        .box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #ffd700;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2>Alert and Prompt Demo</h2>
+        <button onclick="showData()">Click Here</button>
+        <div id="out"></div>
+    </div>
+
+    <script>
+        function showData() {
+            let name = prompt("Enter Your name:");
+            
+            // Validation check
+            if (name === "" || name === null) {
+                alert("Name cannot be empty!");
+                return;
+            }
+
+            let age = prompt("Enter Your Age:");
+            alert("Registration Successful!");
+            
+            // Displaying the output on the page
+            document.getElementById("out").innerHTML = "<b>Name:</b> " + name + " <br><b>Age:</b> " + age;
+        }
+    </script>
+</body>
+</html>
