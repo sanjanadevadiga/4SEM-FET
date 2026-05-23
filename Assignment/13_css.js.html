@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Ticket Booking</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body{
+      background:#111827;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:900px;
+      background:#1f2937;
+      padding:25px;
+      border-radius:12px;
+      box-shadow:0 0 15px rgba(0,0,0,0.4);
+    }
+
+    h1{
+      text-align:center;
+      margin-bottom:20px;
+      color:#f59e0b;
+    }
+
+    .movie-section{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:20px;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    select{
+      padding:10px;
+      border:none;
+      border-radius:6px;
+      font-size:16px;
+      width:250px;
+    }
+
+    .screen{
+      background:white;
+      height:70px;
+      width:100%;
+      margin:20px 0;
+      transform:rotateX(-45deg);
+      box-shadow:0 3px 10px rgba(255,255,255,0.7);
+      border-radius:5px;
+    }
+
+    .seat-container{
+      display:grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap:10px;
+      margin-top:30px;
+    }
+
+    .seat{
+      width:40px;
+      height:40px;
+      background:#374151;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .seat:hover{
+      transform:scale(1.1);
+    }
+
+    .seat.selected{
+      background:#10b981;
+    }
+
+    .seat.occupied{
+      background:#ef4444;
+      cursor:not-allowed;
+    }
+
+    .legend{
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      margin-top:20px;
+    }
+
+    .legend div{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .box{
+      width:20px;
+      height:20px;
+      border-radius:4px;
+    }
+
+    .available{ background:#374151; }
+    .selected-box{ background:#10b981; }
+    .occupied-box{ background:#ef4444; }
+
+    .summary{
+      text-align:center;
+      margin-top:25px;
+      font-size:20px;
+    }
+
+    button{
+      margin-top:20px;
+      padding:12px 25px;
+      background:#f59e0b;
+      border:none;
+      color:white;
+      font-size:18px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#d97706;
+    }
+
+    @media(max-width:600px){
+      .seat{
+        width:30px;
+        height:30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>🎬 Movie Ticket Booking</h1>
+
+    <div class="movie-section">
+      <label>Select Movie:</label>
+
+      <select id="movie">
+        <option value="200">Avengers - ₹200</option>
+        <option value="180">Pushpa 2 - ₹180</option>
+        <option value="250">KGF 3 - ₹250</option>
+        <option value="150">Kantara - ₹150</option>
+      </select>
+    </div>
+
+    <div class="screen"></div>
+
+    <div class="seat-container" id="seatContainer"></div>
+
+    <div class="legend">
+      <div>
+        <div class="box available"></div>
+        <span>Available</span>
+      </div>
+
+      <div>
+        <div class="box selected-box"></div>
+        <span>Selected</span>
+      </div>
+
+      <div>
+        <div class="box occupied-box"></div>
+        <span>Occupied</span>
+      </div>
+    </div>
+
+    <div class="summary">
+      <p>
+        Seats Selected:
+        <span id="count">0</span>
+      </p>
+
+      <p>
+        Total Price:
+        ₹<span id="total">0</span>
+      </p>
+
+      <button onclick="bookTickets()">Book Now</button>
+    </div>
+  </div>
+
+  <script>
+    const seatContainer = document.getElementById("seatContainer");
+    const count = document.getElementById("count");
+    const total = document.getElementById("total");
+    const movieSelect = document.getElementById("movie");
+
+    // Create seats
+    for(let i = 0; i < 48; i++) {
+      const seat = document.createElement("div");
+      seat.classList.add("seat");
+
+      // Random occupied seats
+      if(Math.random() < 0.2){
+        seat.classList.add("occupied");
+      }
+
+      seatContainer.appendChild(seat);
+    }
+
+    updateTotal();
+
+    seatContainer.addEventListener("click", (e) => {
+      if(
+        e.target.classList.contains("seat") &&
+        !e.target.classList.contains("occupied")
+      ){
+        e.target.classList.toggle("selected");
+        updateTotal();
+      }
+    });
+
+    movieSelect.addEventListener("change", updateTotal);
+
+    function updateTotal(){
+      const selectedSeats =
+        document.querySelectorAll(".seat.selected");
+
+      const selectedCount = selectedSeats.length;
+
+      const ticketPrice = +movieSelect.value;
+
+      count.innerText = selectedCount;
+      total.innerText = selectedCount * ticketPrice;
+    }
+
+    function bookTickets(){
+      const selectedSeats =
+        document.querySelectorAll(".seat.selected");
+
+      if(selectedSeats.length === 0){
+        alert("Please select at least one seat!");
+        return;
+      }
+
+      alert(
+        `Booking Successful!\nSeats: ${selectedSeats.length}\nTotal: ₹${total.innerText}`
+      );
+
+      selectedSeats.forEach(seat => {
+        seat.classList.remove("selected");
+        seat.classList.add("occupied");
+      });
+
+      updateTotal();
+    }
+  </script>
+
+</body>
+</html>
